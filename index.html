@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Choose template</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 class="title">Choose template</h1>
+    <div class="templates">
+        <div class="template" id="template1" onclick="selectingTemplate(event)">Template #1</div>
+        <div class="template" id="template2" onclick="selectingTemplate(event)">Template #2</div>
+        <div class="template" id="template3" onclick="selectingTemplate(event)">Template #3</div>
+    </div>
+    <div class="handlers">
+        <a href="step1.html"><button id="submit_button" disabled>Continue</button></a>
+    </div>
+    <script>
+        sessionStorage.clear();
+        function selectingTemplate(event) {
+            sessionStorage.setItem('templateId', event.target.id )
+            // chosenSet.id = event.target.id;
+/            showSelectedTemplate(event.target.id);
+        };
+
+        function showSelectedTemplate(id) {
+            let chosenTemps = document.getElementsByClassName('active_template');
+            for (i=0; i< chosenTemps.length; i++){
+                chosenTemps[i].classList.remove('active_template')
+            };
+            document.getElementById(id).classList.add('active_template');
+            document.getElementById('submit_button').disabled = false;
+        }
+
+        // let chosenSet = {};
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fill data</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+    <h1 class="title">Fill data</h1>
+    <div class="inputWrapper">
+        <div class="form" action="">
+            Name:<input type="text" name="userName" id="" onchange="checkButtonState()">
+            Surname:<input type="text" name="userSurname" id="" onchange="checkButtonState()">
+            Birth date:<input type="date" name="birthDate" id="" onchange="checkButtonState()">
+            Sex: <select name="sex" id="sex" onchange="checkButtonState()">
+                <option disabled selected>Choose your sex</option>
+                <option value="male">male</option>
+                <option value="female">female</option>
+            </select>
+            <div class="handlers">
+                <a href="index.html"><button id="backToData" >Change template</button></a>
+                <button id="continue_button" disabled onclick="saveOptions()">Continue</button>
+                <a href=""></a>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        let formUserName = document.getElementsByName('userName');
+        let formUserSurname = document.getElementsByName('userSurname');
+        let formBirthDate = document.getElementsByName('birthDate');
+        let formSex = document.getElementsByName('sex');
+
+        function checkButtonState (){
+            if (formUserName[0].value !== '' &&
+                formUserSurname[0].value !== '' &&
+                formBirthDate[0].value !== '' &&
+                formSex[0].value !== '') {
+                document.getElementById('continue_button').disabled = false;
+            } else {
+                document.getElementById('continue_button').disabled = true;
+            }
+        };
+
+        function saveOptions() {
+            sessionStorage.setItem('userName', formUserName[0].value );
+            sessionStorage.setItem('userSurname', formUserSurname[0].value );
+            sessionStorage.setItem('birthDate', formBirthDate[0].value );
+            sessionStorage.setItem('sex', formSex[0].value );
+            window.location.href = 'step2.html';
+            console.log(sessionStorage)
+        }
+
+        
+    </script>
+</body>
+</html>

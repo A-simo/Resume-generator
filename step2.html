@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download your resume</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <h1 class="title">Download your resume</h1>
+    <div id="tmplId" class="templateId"></div>
+    <div class="resume_wrapper">
+        <p id="name">Name: </p>
+        <p id="surname">Surname: </p>
+        <p id="birthDate">Date of birth: </p>
+        <p id="sex">Sex: </p>
+
+    </div>
+    <div class="handlers">
+        <a href="step1.html"><button id="backToData" >Change data</button></a>
+        <button id="backToData" onclick="print()">Download resume in PDF</button>
+
+    </div>
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+    <script>
+        document.getElementById('tmplId').innerHTML = sessionStorage.templateId;
+        document.getElementById('name').innerHTML += sessionStorage.userName;
+        document.getElementById('surname').innerHTML += sessionStorage.userSurname;
+        document.getElementById('birthDate').innerHTML += sessionStorage.birthDate;
+        document.getElementById('sex').innerHTML += sessionStorage.sex;
+
+        // let pdfName = 'Name: ' + sessionStorage.userName;
+
+        function print () {
+            let doc = new jsPDF()
+
+            // doc.text('Hello world!', 10, 10)
+
+            doc.rect(0, 0, 18, 70, 'FD')
+            doc.setFontSize(40)
+            doc.setTextColor(255, 255, 255)
+            doc.text(sessionStorage.templateId, 14, 66, {angle: 90})
+            
+            doc.setFontSize(32)
+            doc.setTextColor(0,0,0)
+            doc.text('Name: ' + sessionStorage.userName, 40, 30)
+            doc.text('Surname: ' + sessionStorage.userSurname, 40, 50)
+            doc.text('Date of birth: ' + sessionStorage.birthDate, 40, 70)
+            doc.text('sex: ' + sessionStorage.sex, 40, 90)
+
+
+            doc.save('resume.pdf')
+        }
+
+
+    </script>
+    
+    
+</body>
+</html>
